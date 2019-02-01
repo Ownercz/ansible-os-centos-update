@@ -1,0 +1,12 @@
+  - name: Reboot target machine
+    shell: sleep 2 && /usr/sbin/shutdown -r now "Kernel update"
+    async: 1
+    poll: 0
+    ignore_errors: true
+    changed_when: true
+    register: reboot_after_kernel_update
+    when: "'con01' not in inventory_hostname_short and reboot is True"
+  - name: Wait for {{ inventory_hostname }} to come back
+    local_action: wait_for host={{ inventory_hostname }} port=22 state=started delay=8
+    become: false
+    when: "'con01' not in inventory_hostname_short"

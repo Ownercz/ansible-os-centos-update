@@ -1,0 +1,6 @@
+ - name: Check OS Version
+   command: /bin/true
+   when: ansible_distribution_version == '7.4.1708'
+   
+# - debug:
+#    msg: "{{ ansible_distribution }} {{ ansible_distribution }} {{ ansible_distribution_version }}  "   

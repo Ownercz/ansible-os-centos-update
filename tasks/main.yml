@@ -1,0 +1,6 @@
+---
+- include: update.yml
+- include: reboot.yml
+- include: check.yml
+
+
